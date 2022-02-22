@@ -1,20 +1,31 @@
+import { useState } from 'react'
 import './Menu.css'
 import MenuItem from './MenuItem';
-const Menu = () => {
+import { menuItems } from './MenuConstants';
+
+
+const Menu = ({ onMenuItemClick }) => {
+    const [currentItem, setCurrentItem] = useState();
+    const menuItemClickHandler = (id) => {
+        setCurrentItem(id);
+        onMenuItemClick(id);
+    }
     return (
 
         <aside className="menu">
-            <MenuItem>Going to 1</MenuItem>
-            <MenuItem>Going to 2</MenuItem>
-            <MenuItem>Going to 3</MenuItem>
-            <MenuItem>Going to 4</MenuItem>
-            <MenuItem>Going to 5</MenuItem>
-            <MenuItem>Going to 6</MenuItem>
-            <MenuItem>Going to 7</MenuItem>
-            <MenuItem>Going to 8</MenuItem>
-            <MenuItem>Going to 9</MenuItem>
-            <MenuItem>Going to 10</MenuItem>
-            <MenuItem>Going to 11</MenuItem>
+            {
+                menuItems.map(mu =>
+                    <MenuItem
+                        key={mu.id}
+                        id={mu.id}
+                        isSelected={mu.id == currentItem}
+                        onClick={menuItemClickHandler}
+                    >
+                        {mu.text}
+                    </MenuItem>)
+            }
+
+
         </aside>
 
     );
