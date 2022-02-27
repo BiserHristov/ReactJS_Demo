@@ -14,3 +14,7 @@ nav .listItem, footer .listItem {
   margin: 0.1%;
   vertical-align: top;
 }
+
+.active-navigation-item{
+  background-color: red;
+}
